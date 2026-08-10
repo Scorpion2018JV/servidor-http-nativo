@@ -5,7 +5,7 @@ const server = http.createServer((req, res) => {
     console.log(`Requisição recebida! ${req.method} ${req.url}`)
 
     res.statusCode = 200;
-    res.setHeader('Content-Type', 'tesxt/plain; charset=utf-8')
+    res.setHeader('Content-Type', 'text/plain; charset=utf-8')
     
     res.end("Servidor nativo funcionando!")
 });
