@@ -5,9 +5,9 @@ const server = http.createServer((req, res) => {
     console.log(`Requisição recebida! ${req.method} ${req.url} - ${new Date().toISOString()}`)
 
     res.statusCode = 201;
-    res.setHeader('Content-Type', 'text/plain; charset=utf-8')
+    res.setHeader('Content-Type', `application/json`)
     
-    res.end("Recurso criado")
+    res.end(JSON.stringify({ status: "ok" }))
 });
 
 server.listen(PORTA, () => {
