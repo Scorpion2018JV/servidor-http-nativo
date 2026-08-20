@@ -26,8 +26,14 @@ const server = http.createServer((req, res) => {
     }
 
     if (req.method == "GET" && req.url == "/status") {
-        return res.end(JSON.stringify({ "status": "ok" }))
+        return res.end(JSON.stringify({ status: "ok" }))
     }
+
+    else {
+        res.statusCode = 404
+        return res.end(JSON.stringify({Error: res.statusCode}))
+    }
+
 })
 
 server.listen(porta, () => {
