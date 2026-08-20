@@ -1,19 +1,31 @@
-const http = require('node:http');
-const PORTA = 3000;
+import http from 'node:http'
+import { URL } from 'node:url'
+const porta = 3000
+const produtos = [
+    {id: 1, nome: "Sabonete"},
+    {id: 2, nome: "Volante LogiTech G923"},
+    {id: 3, nome: "Sabão em Pó"},
+    {id: 4, nome: "Pelúcia do Sonic"},
+]
 
 const server = http.createServer((req, res) => {
-    console.log(`Requisição recebida! ${req.method} ${req.url} - ${new Date().toISOString()}`)
+    res.statusCode = 200
+    res.setHeader('Content-Type', 'application/json; charset=utf-8')
 
-    res.statusCode = 201;
-    res.setHeader('Content-Type', `application/json`)
+    if (req.method == "GET" && req.url == "/contato") {
+        return res.end(JSON.stringify({data:
+            {numero_telefone: "67 99999 9999", endereco: "Rua da Alegria, 99, Centro"}}));
+    }
 
-    res.end(JSON.stringify({ status: "ok" }))
+    if (req.method == "GET" && req.url == "/produtos") {
+        return res.end(JSON.stringify(produtos));
+    }
+
+    if (req.method == "GET" && req.url == "/") {
+        return res.end(JSON.stringify({data: "Página Inicial"}))
+    }
+})
+
+server.listen(porta, () => {
+    console.log(`Servidor ouvindo na porta ${porta}`)
 });
-
-server.listen(PORTA, () => {
-    console.log(`Servidor funcionando na porta ${PORTA}`)
-});
-
-//Se a linha res.end() for removida, o servidor recebe a requisição, mas não exibe a resposta.
-//Então o navegador fica carregando e esperando uma resposta que nunca aparece.
-//O res.end() indica ao servidor que a resposta foi concluída e envia o conteúdo ao cliente.
