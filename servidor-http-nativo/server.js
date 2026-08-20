@@ -24,6 +24,10 @@ const server = http.createServer((req, res) => {
     if (req.method == "GET" && req.url == "/") {
         return res.end(JSON.stringify({data: "Página Inicial"}))
     }
+
+    if (req.method == "GET" && req.url == "/status") {
+        return res.end(JSON.stringify({ "status": "ok" }))
+    }
 })
 
 server.listen(porta, () => {
