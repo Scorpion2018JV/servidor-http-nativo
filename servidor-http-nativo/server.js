@@ -13,24 +13,28 @@ const server = http.createServer((req, res) => {
     res.setHeader('Content-Type', 'application/json; charset=utf-8')
 
     if (req.method == "GET" && req.url == "/contato") {
-        return res.end(JSON.stringify({data:
-            {numero_telefone: "67 99999 9999", endereco: "Rua da Alegria, 99, Centro"}}));
+        console.log(`Método: ${req.method}, URL: ${req.url}`)
+        return res.end(JSON.stringify({data: {numero_telefone: "67 99999 9999", endereco: "Rua da Alegria, 99, Centro"}}));
     }
 
     if (req.method == "GET" && req.url == "/produtos") {
+        console.log(`Método: ${req.method}, URL: ${req.url}`)
         return res.end(JSON.stringify(produtos));
     }
 
     if (req.method == "GET" && req.url == "/") {
+        console.log(`Método: ${req.method}, URL: ${req.url}`)
         return res.end(JSON.stringify({data: "Página Inicial"}))
     }
 
     if (req.method == "GET" && req.url == "/status") {
+        console.log(`Método: ${req.method}, URL: ${req.url}`)
         return res.end(JSON.stringify({ status: "ok" }))
     }
 
     else {
         res.statusCode = 404
+        console.log(`Método: ${req.method}, URL: ${req.url}`)
         return res.end(JSON.stringify({Error: res.statusCode}))
     }
 
